@@ -1,0 +1,35 @@
+{% extends "layouts/base.html" %}
+
+{% block content %}
+<h2>Editar Inscripción</h2>
+<form method="POST" action="{{ url_for('inscripcion_controller.edit', id=inscripcion.id) }}">
+    <div class="mb-3">
+        <label for="fecha" class="form-label">Fecha</label>
+        <input type="date" class="form-control" name="fecha" value="{{ inscripcion.fecha }}" required>
+    </div>
+    <div class="mb-3">
+        <label for="estudiante_id" class="form-label">Estudiante</label>
+        <select name="estudiante_id" class="form-control" required>
+            <option value="">-- Seleccionar --</option>
+            {% for estudiante in estudiantes %}
+            <option value="{{ estudiante.id }}" {% if estudiante.id == inscripcion.estudiante_id %}selected{% endif %}>
+                {{ estudiante.nombre }} {{ estudiante.apellidos }}
+            </option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="curso_id" class="form-label">Curso</label>
+        <select name="curso_id" class="form-control" required>
+            <option value="">-- Seleccionar --</option>
+            {% for curso in cursos %}
+            <option value="{{ curso.id }}" {% if curso.id == inscripcion.curso_id %}selected{% endif %}>
+                {{ curso.descripcion }}
+            </option>
+            {% endfor %}
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Actualizar</button>
+    <a href="{{ url_for('inscripcion_controller.index') }}" class="btn btn-secondary">Cancelar</a>
+</form>
+{% endblock %}

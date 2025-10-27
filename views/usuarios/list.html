@@ -1,0 +1,26 @@
+{% extends "layouts/base.html" %}
+
+{% block content %}
+<h2>Lista de Usuarios</h2>
+<a href="{{ url_for('usuarios_controller.add') }}" class="btn btn-primary mb-3">Agregar Usuario</a>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Usuario</th>
+            <th>Correo</th>
+            <th>Celular</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for usuario in usuarios %}
+        <tr>
+            <td>{{ usuario.id }}</td>
+            <td>{{ usuario.usuario }}</td>
+            <td>{{ usuario.correo }}</td>
+            <td>{{ usuario.celular }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

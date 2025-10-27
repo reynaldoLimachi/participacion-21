@@ -1,0 +1,29 @@
+{% extends "layouts/base.html" %}
+
+{% block content %}
+<h2>Lista de Cursos</h2>
+<a href="{{ url_for('cursos_controller.add') }}" class="btn btn-primary mb-3">Agregar Curso</a>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Descripción</th>
+            <th>Horas</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for curso in cursos %}
+        <tr>
+            <td>{{ curso.id }}</td>
+            <td>{{ curso.descripcion }}</td>
+            <td>{{ curso.horas }}</td>
+            <td>
+                <a href="{{ url_for('cursos_controller.edit', id=curso.id) }}" class="btn btn-sm btn-warning">Editar</a>
+                <a href="{{ url_for('cursos_controller.delete', id=curso.id) }}" class="btn btn-sm btn-danger" onclick="return confirm('¿Eliminar?')">Eliminar</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

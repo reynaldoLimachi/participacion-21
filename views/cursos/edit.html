@@ -1,0 +1,17 @@
+{% extends "layouts/base.html" %}
+
+{% block content %}
+<h2>Editar Curso</h2>
+<form method="POST" action="{{ url_for('cursos_controller.edit', id=curso.id) }}">
+    <div class="mb-3">
+        <label for="descripcion" class="form-label">Descripción</label>
+        <input type="text" class="form-control" name="descripcion" value="{{ curso.descripcion }}" required>
+    </div>
+    <div class="mb-3">
+        <label for="horas" class="form-label">Horas</label>
+        <input type="number" class="form-control" name="horas" value="{{ curso.horas }}" required>
+    </div>
+    <button type="submit" class="btn btn-warning">Actualizar</button>
+    <a href="{{ url_for('cursos_controller.index') }}" class="btn btn-secondary">Cancelar</a>
+</form>
+{% endblock %}

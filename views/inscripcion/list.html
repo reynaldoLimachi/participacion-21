@@ -1,0 +1,36 @@
+{% extends "layouts/base.html" %}
+
+{% block content %}
+<h2>Lista de Inscripciones</h2>
+<a href="{{ url_for('inscripcion_controller.add') }}" class="btn btn-primary mb-3">Agregar Inscripción</a>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Fecha</th>
+            <th>Estudiante</th>
+            <th>Curso</th>
+            <th>Acción</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for inscripcion in inscripciones %}
+        <tr>
+            <td>{{ inscripcion.id }}</td>
+            <td>{{ inscripcion.fecha }}</td>
+            <td>{{ inscripcion.nombre }} {{ inscripcion.apellidos }}</td>
+            <td>{{ inscripcion.descripcion }}</td>
+            <td>
+                <a href="{{ url_for('inscripcion_controller.edit', id=inscripcion.id) }}" class="btn btn-sm btn-warning">Editar</a>
+                <form action="{{ url_for('inscripcion_controller.delete', id=inscripcion.id) }}" 
+                      method="POST" 
+                      style="display:inline;" 
+                      onsubmit="return confirm('¿Estás seguro de eliminar esta inscripción?');">
+                    <button type="submit" class="btn btn-sm btn-danger">Eliminar</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,13 @@
+/* Estilos personalizados para CentroCAP */
+body {
+    font-family: Arial, sans-serif;
+}
+
+.navbar-brand {
+    font-weight: bold;
+}
+.footer {
+    background-color: #f8f9fa;
+    padding: 20px;
+    text-align: center;
+}

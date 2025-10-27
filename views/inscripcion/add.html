@@ -1,0 +1,28 @@
+{% extends "layouts/base.html" %}
+
+{% block content %}
+<h2>Agregar Inscripción</h2>
+<form method="POST" action="{{ url_for('inscripcion_controller.add') }}">
+    <div class="mb-3">
+        <label for="fecha" class="form-label">Fecha</label>
+        <input type="date" class="form-control" name="fecha" required>
+    </div>
+    <div class="mb-3">
+        <label for="estudiante_id" class="form-label">Estudiante</label>
+        <select name="estudiante_id" class="form-control" required>
+            {% for estudiante in estudiantes %}
+            <option value="{{ estudiante.id }}">{{ estudiante.nombre }} {{ estudiante.apellidos }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="curso_id" class="form-label">Curso</label>
+        <select name="curso_id" class="form-control" required>
+            {% for curso in cursos %}
+            <option value="{{ curso.id }}">{{ curso.descripcion }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Guardar</button>
+</form>
+{% endblock %}
